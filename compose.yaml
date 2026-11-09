@@ -1,0 +1,46 @@
+services:
+  ollama:
+    image: ollama/ollama:0.40.13
+    restart: unless-stopped
+    volumes:
+      - ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+  modelo:
+    image: ollama/ollama:0.40.13
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["/bin/ollama"]
+    command: ["pull", "qwen2.5:3b"]
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: "no"
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/app.Dockerfile
+    depends_on:
+      modelo:
+        condition: service_completed_successfully
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    command: ["python", "-m", "asistente_voz.web", "--host", "0.0.0.0", "--puerto", "${APP_PORT:-8765}"]
+    ports:
+      - "127.0.0.1:${APP_PORT:-8765}:${APP_PORT:-8765}"
+    volumes:
+      - ./data:/app/data
+      - asr_models:/app/models
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
+  asr_models:

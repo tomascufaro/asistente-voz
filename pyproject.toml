@@ -1,0 +1,21 @@
+[project]
+name = "asistente-voz"
+version = "0.1.0"
+description = "Asistente de voz local en español (TFG, Prototipado Tecnológico)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "faster-whisper>=1.1,<2", # reconocimiento de voz local (CPU, int8)
+    "av>=14,<17", # decodificación de audio; PyAV 19 rompe faster-whisper 1.2.1
+    "ollama>=0.4,<1", # cliente del modelo de lenguaje local
+    "sounddevice>=0.5,<1", # grabación del micrófono (PortAudio)
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/asistente_voz"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"casos" = "asistente_voz/casos"

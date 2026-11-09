@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f8fa">
+  <title>Asistente local · Conversaciones</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar" aria-label="Conversaciones">
+    <a class="brand" href="/" aria-label="Asistente local, inicio"><span class="brand-icon" aria-hidden="true">a<span>·</span></span><span>Asistente local<small>Tu espacio de trabajo</small></span></a>
+    <button id="nueva" class="button primary wide" type="button"><span aria-hidden="true">＋</span> Nueva conversación</button>
+    <label class="mode-label" for="perfil">Perfil de la próxima conversación</label>
+    <select id="perfil"><option value="pasteleria_casera">Pastelería casera</option><option value="generico">Sin especialización</option></select>
+    <div class="section-label"><h2>Conversaciones</h2><button id="recargar" class="text-button" type="button">Actualizar</button></div>
+    <nav id="sesiones" class="sessions" aria-label="Historial de conversaciones"><p class="muted small">Cargando conversaciones…</p></nav>
+    <div class="sidebar-footer"><span class="status-dot" aria-hidden="true"></span><span>Todo en tu equipo<small>Historial y datos locales</small></span></div>
+  </aside>
+  <main class="workspace">
+    <header class="topbar"><div><p class="eyebrow">ESPACIO DE CONVERSACIÓN</p><h1 id="titulo">Nueva conversación</h1></div></header>
+    <p id="perfil-activo" class="connection"></p>
+    <div id="conexion" class="connection" role="status" aria-live="polite">Conectando con el servidor local…</div>
+    <section id="contenido" class="conversation" aria-label="Conversación actual">
+      <div id="bienvenida" class="welcome">
+        <span class="welcome-symbol" aria-hidden="true">✳</span>
+        <p class="eyebrow">UN PEDIDO A LA VEZ</p>
+        <h2>¿Qué querés resolver hoy?</h2>
+        <p>Consultá tus documentos, organizá tu agenda o prepará un correo. Podés repreguntar dentro de esta conversación.</p>
+        <div class="suggestions">
+          <button type="button" data-ejemplo="En el catálogo de budines de prueba, ¿cuánto cuesta el budín de limón?"><span aria-hidden="true">↗</span> Consultar un documento<small>Buscá un dato en tus archivos</small></button>
+          <button type="button" data-ejemplo="Agendá una reunión con Matías mañana a las tres de la tarde"><span aria-hidden="true">＋</span> Agendar un evento<small>Revisá antes de guardar</small></button>
+          <button type="button" data-ejemplo="Escribí un mail al proveedor pidiendo presupuesto de harina"><span aria-hidden="true">✎</span> Preparar un correo<small>Un borrador, sin enviar</small></button>
+        </div>
+      </div>
+      <section class="resources" aria-label="Agenda y documentos">
+        <button id="ver-agenda" class="button" type="button">Ver agenda</button>
+        <button id="ver-documentos" class="button" type="button">Ver documentos</button>
+        <button id="cerrar-recursos" class="text-button" type="button" hidden>Cerrar vista</button>
+        <div id="recursos" hidden aria-live="polite"></div>
+      </section>
+      <div id="mensajes" class="messages" role="log" aria-live="polite" aria-relevant="additions" aria-label="Mensajes"></div>
+      <div id="pensando" class="thinking" hidden><span class="pulse" aria-hidden="true"></span> El agente está procesando tu pedido…</div>
+      <section id="propuesta" class="proposal" hidden aria-label="Propuesta pendiente de confirmación"></section>
+    </section>
+    <div class="composer-area">
+      <div id="error" class="error" role="alert" hidden></div>
+      <form id="formulario" class="composer">
+        <div id="campo-correo" hidden>
+          <label for="destinatario">Correo del destinatario · solo teclado</label>
+          <input id="destinatario" type="email" maxlength="254" autocomplete="off" placeholder="nombre@example.invalid">
+          <p>Escribí la dirección en este campo. No se toman direcciones del audio.</p>
+        </div>
+        <label for="texto" class="sr-only">Escribí tu pedido o respuesta</label>
+        <textarea id="texto" rows="2" maxlength="8000" placeholder="Escribí un pedido o una repregunta…"></textarea>
+        <p id="estado-voz" role="status" aria-live="polite"></p><button id="microfono" class="button" type="button">Grabar voz</button><button id="descartar-voz" class="text-button" type="button" hidden>Descartar audio</button><div class="composer-bottom"><span>Texto o voz <span class="keyboard-hint">· Enter para enviar</span></span><button id="enviar" class="button primary" type="submit">Enviar <span aria-hidden="true">↑</span></button></div>
+      </form>
+      <div class="composer-note"><span>Revisá las propuestas antes de confirmar.</span><button id="cancelar" class="text-button" type="button" disabled>Cancelar pedido</button></div>
+    </div>
+  </main>
+</body>
+</html>
