@@ -4,7 +4,7 @@ Asistente en español rioplatense para consultar agenda y documentos, crear even
 
 ## Video demostrativo
 
-[Ver video demostrativo](demo/video-demostrativo.mov)
+[Ver video demostrativo en Google Drive](https://drive.google.com/file/d/1zmCfEPW8fu-VdQxBF8Pp_jIoa-UyzNr1/view?usp=sharing)
 
 ## Iniciar con Docker
 
