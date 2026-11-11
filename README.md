@@ -8,6 +8,8 @@ Asistente en español rioplatense para consultar agenda y documentos, crear even
 
 ## Iniciar con Docker
 
+La [guía rápida de instalación](Guia_instalacion.md) contiene los requisitos y los pasos para ejecutar el prototipo.
+
 Requisitos: Docker Desktop o Docker Engine con Compose, conexión a internet para descargar las imágenes y modelos.
 
 ```sh
