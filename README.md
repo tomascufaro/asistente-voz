@@ -2,6 +2,10 @@
 
 Asistente en español rioplatense para consultar agenda y documentos, crear eventos y preparar borradores de correo. La app corre localmente; no envía correos y pide confirmación antes de guardar cambios.
 
+## Video demostrativo
+
+[Ver video demostrativo](demo/video-demostrativo.mov)
+
 ## Iniciar con Docker
 
 Requisitos: Docker Desktop o Docker Engine con Compose, conexión a internet para descargar las imágenes y modelos.
